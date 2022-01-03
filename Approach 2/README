@@ -1,0 +1,139 @@
+******************************************************************
+A Dynamic Programming Heuristic for DENSE HESSIAN CHAIN BRACKETING
+							APPROACH 2
+******************************************************************
+
+1. To build
+
+make
+
+2. To run
+
+./generate.exe N M 
+  ... generates a problem with N as the compositeness and 
+  M as the upper bound on the dimensions of the Jacobians. 
+
+./solve.exe problem.txt
+  ... solves for optimizing the cost of accumulation of Hessian 
+  along with the sample results of bracketing from left and right
+  for comparison purposes. Creates a bracketing order and saves it
+  in "solution.txt" to be given as input for run.exe.
+  
+./run.exe problem.txt solution.txt
+  ... takes the input file "problem.txt" from generate.exe and input file
+  "solution.txt" from solve.exe and compares the run times of the bracketing 
+  approaches from right and left and the naive heuristic bracketing against the 
+  Dynamic programming algorithm for calculating the Hessian by performing actual 
+  Tensor and matrix multiplications.
+  
+
+3. Example
+
+a)	./generate.exe 5 5 > problem.txt
+
+Yields the following input file(please note that the dimensions generated here are 
+subject to change during subsequent running of the software owing to the random
+ness in the problem generation). The input file generated below has the following 
+data:
+	1) The compositeness of the function, represented as "5" below.
+	2) The dimensions of the individual Jacobians are shown in the 
+	first chunk of values. 
+		eg. 5, 3 are the dimensions in x and y direction for the 
+		first Jacobian and so on.
+
+5
+5 3
+2 5
+1 2
+4 1
+1 4
+
+b)	./solve.exe problem.txt
+
+yields following output:
+
+Dynamic Programming Table for chain:1
+Cost(C[1][0])=90; Split before G[1];
+Cost(C[2][1])=10; Split before G[2];
+Cost(C[2][0])=55; Split before G[1]
+Cost(C[3][2])=8; Split before G[3];
+Cost(C[3][1])=30; Split before G[3];
+Cost(C[3][0])=91; Split before G[3];
+Cost(C[4][3])=4; Split before G[4];
+Cost(C[4][2])=6; Split before G[3];
+Cost(C[4][1])=16; Split before G[2];
+Cost(C[4][0])=61; Split before G[1];
+
+Dynamic Programming Table for chain:2
+Cost(C[1][0])=150; Split before G[1];
+Cost(C[2][1])=50; Split before G[2];
+Cost(C[2][0])=125; Split before G[1];
+Cost(C[3][2])=8; Split before G[3];
+Cost(C[3][1])=150; Split before G[3];
+Cost(C[3][0])=185; Split before G[3];
+Cost(C[4][3])=0; Split before G[4];
+Cost(C[4][2])=0; Split before G[3];
+Cost(C[4][1])=50; Split before G[2];
+Cost(C[4][0])=125; Split before G[1];
+
+Dynamic Programming Table for chain:3
+Cost(C[1][0])=30; Split before G[1];
+Cost(C[2][1])=20; Split before G[2];
+Cost(C[2][0])=42; Split before G[2];
+Cost(C[3][2])=16; Split before G[3];
+Cost(C[3][1])=60; Split before G[3];
+Cost(C[3][0])=66; Split before G[3];
+Cost(C[4][3])=0; Split before G[4];
+Cost(C[4][2])=4; Split before G[3];
+Cost(C[4][1])=24; Split before G[2];
+Cost(C[4][0])=46; Split before G[2];
+
+Dynamic Programming Table for chain:4
+Cost(C[1][0])=0; Split before G[1];
+Cost(C[2][1])=10; Split before G[2];
+Cost(C[2][0])=6; Split before G[2];
+Cost(C[3][2])=8; Split before G[3];
+Cost(C[3][1])=30; Split before G[3];
+Cost(C[3][0])=18; Split before G[3];
+Cost(C[4][3])=4; Split before G[4];
+Cost(C[4][2])=6; Split before G[3];
+Cost(C[4][1])=16; Split before G[2];
+Cost(C[4][0])=12; Split before G[2];
+
+Dynamic Programming Table for chain:5
+Cost(C[1][0])=0; Split before G[1];
+Cost(C[2][1])=10; Split before G[2];
+Cost(C[2][0])=6; Split before G[2];
+Cost(C[3][2])=8; Split before G[3];
+Cost(C[3][1])=30; Split before G[3];
+Cost(C[3][0])=18; Split before G[3];
+Cost(C[4][3])=16; Split before G[4];
+Cost(C[4][2])=24; Split before G[3];
+Cost(C[4][1])=46; Split before G[3];
+Cost(C[4][0])=34; Split before G[3];
+
+left bracketing fma = 513
+right bracketing fma = 834
+optimized bracketing fma = 410
+
+
+
+c)	./run.exe problem.txt solution.txt
+
+we provide 2 input files for this part. The first is the result generated 
+from generate.exe and the second is the results generated from solve.exe.
+The output generated from solve.exe which is stored in "solution.txt"
+is the optimized bracketing order for the hessian chaining problem obtained
+by running the Dynamic programming in solve.exe.
+
+Running the above command yields the elapsed time (subject to slight changes) 
+for left bracketing, right bracketing and the optimized bracketing approach.
+
+Elapsed time (in microseconds):
+left bracketing: 34
+right bracketing: 32
+optimized bracketing: 21
+
+
+NOTE :: The results presented in the paper can be easily reproduced  
+by the input files present in the folder "Tested_input_files". 
