@@ -6,5 +6,5 @@ Two approaches are proposed : Approach 1 & 2 respectively. Individual README fil
 
 The software presented here follows from our conference proceedings:
 1) Naumann, Uwe and Shubhaditya Burela. “A Dynamic Programming Heuristic for Dense Hessian Chain Bracketing". SIAM ACDA 2021 (Poster Presentation)
-2) Naumann, Uwe and Shubhaditya Burela. "Hessian Chain bracketing" https://arxiv.org/abs/2103.09480v2
+2) Naumann, Uwe and Shubhaditya Burela. "Hessian Chain bracketing"(https://www.intlpress.com/site/pub/pages/journals/items/joc/content/vols/0014/0004/a007/index.php?mode=ns)
 
